@@ -27,4 +27,13 @@ class TestMmsModel(TestCase):
     def test_return_False(self):
         btc = CriptoValores.objects.get(mms_timestamp=self.cripto.mms_timestamp)
         self.assertNotEqual(btc.__str__(), '222222')
+    
+    def test_return_create_new(self):
+        btc = CriptoValores.objects.create(
+            pair = 2,
+            mms_timestamp = 1617374756,
+            close = 1.1,
+        )
+        self.assertEqual(btc.get_pair_display(), 'BRLETH')
+
 
