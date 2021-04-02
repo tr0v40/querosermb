@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from mms_api.models import CriptoValores
+from .models import CriptoValores
 
 
 def mms_days(timestamp=None, mms_range=None):
