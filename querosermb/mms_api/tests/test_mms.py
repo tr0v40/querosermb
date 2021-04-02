@@ -28,8 +28,7 @@ class TestTimestampSequence(TestCase):
         self.datetimestamp = 1617383611
 
     def test_create_dates(self):
-        date = datetime.fromtimestamp(self.datetimestamp)
         data_set = set(self.fix[0] - timedelta(x) for x in range(len(self.fix)))
-        result = sorted(data_set - mms_days(self.datetimestamp, 20))
+        result = sorted(data_set - set(mms_days(self.datetimestamp, 20)))
         self.assertListEqual(result, [])
 
