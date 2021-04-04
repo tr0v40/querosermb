@@ -66,7 +66,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'querosermb_db',
         'USER': 'querosermb',
-        'PASSWORD': '',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': ''
     }
