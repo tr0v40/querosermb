@@ -8,7 +8,7 @@ class TestFunctionToday(TestCase):
         self.today = datetime.now()
     
     def test_today_true(self):
-        self.assertEqual(self.today, today())
+        self.assertEqual(self.today.date(), today().date())
     
     def test_today_false(self):
         self.assertNotEqual(self.today-timedelta(1), today())
