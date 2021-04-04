@@ -3,8 +3,8 @@ from django.test import TestCase
 
 from datetime import datetime, timedelta, date
 
-from mms_api.models import CriptoValores 
-from mms_api.functions import mms_days, calc_mms
+from ..models import CriptoValores 
+from ..functions import mms_days, calc_mms
 
 
 class TestTimestampSequence(TestCase):

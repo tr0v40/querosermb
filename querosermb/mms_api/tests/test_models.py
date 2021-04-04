@@ -1,8 +1,6 @@
-import logging
-
 from django.test import TestCase
 
-from mms_api.models import CriptoValores
+from ..models import CriptoValores
 
 class TestMmsModel(TestCase):
     def setUp(self):
