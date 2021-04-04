@@ -2,6 +2,14 @@ from datetime import datetime, timedelta
 
 from .models import CriptoValores
 
+def today():
+    return datetime.now()
+    
+def converter_to_timestamp(self):
+    return int(datetime.timestamp(self))
+
+def converter_to_date(self):
+    return datetime.fromtimestamp(self)
 
 def mms_days(timestamp=None, mms_range=None):
     if timestamp and mms_range:
