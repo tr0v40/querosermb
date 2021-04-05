@@ -28,11 +28,14 @@ class Command(BaseCommand):
                 values = data.json()
                 try:
                     for value in values['candles']:
-                        CriptoValores.objects.create(
+                        val = CriptoValores.objects.create(
                             pair=code,
                             mms_timestamp=value['timestamp'],
                             close=value['close']
                         )
+                        val.mms_20 = calc_mms(val.pair, val.mms_timestamp, 20)
+                        val.mms_50 = calc_mms(val.pair, val.mms_timestamp, 50)
+                        val.mms_200 = calc_mms(val.pair, val.mms_timestamp, 200)
+                        val.save()
                 except TypeError as e:
                     print(e)
-

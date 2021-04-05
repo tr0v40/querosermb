@@ -30,9 +30,11 @@ def calc_mms(pair, timestamp, mms_range):
                                                     ).close)
             except CriptoValores.DoesNotExist as e:
                 print(e, day)
-                return None
+                return 0
         if len(objs) == mms_range:
             for obj in objs:
                 mms_value += obj
             return round(mms_value/mms_range, 5)
-        
+        else:
+            return 0
+

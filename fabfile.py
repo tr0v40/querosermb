@@ -1,11 +1,6 @@
 # -*- coding: utf-8 -*-
-# import os, re
-# import glob
-# import StringIO
-
 from fabric.api import task, run, cd, env, prefix, sudo, settings
 from fabric.api import *
-# from fabric.operations import local
 
  
 env.hosts = ['198.211.114.165']
@@ -13,28 +8,33 @@ env.user  = 'root'
 
 @task
 def full_instalattion():
-    # remote_info()
-    # install_ubuntu_dependencies()
-    # git_clone()
-    # psql_conf()
-    # pg_create_user()
-    # pg_create_database()
-    # permissions()
-    # virtualenv_install()
+    remote_info()
+    install_ubuntu_dependencies()
+    git_clone()
+    psql_conf()
+    pg_create_user()
+    pg_create_database()
+    permissions()
+    virtualenv_install()
     populate()
     gunicorn_config()
     nginx_conf()
     restart_all()
+    cron()
 
 def restart(command):
     return sudo('systemctl restart %s' % command)
+
+@task
+def list_crons():
+    run(venv() +  "Crontab(user='root')")
 
 def remote_info():
     run('uname -a')
  
 def install_ubuntu_dependencies():
     sudo('apt-get update')
-    sudo('apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx')
+    sudo('apt-get install python3-pip python3-dev libpq-dev postgresql postgresql-contrib nginx cron')
     sudo('pip3 install --upgrade pip')
     sudo('pip3 install virtualenv')
 
@@ -68,6 +68,7 @@ def virtualenv_install():
     sudo('virtualenv /home/querosermb/querosermb/_virtualenv')
     sudo(venv() +  'pip3 install -r /home/querosermb/requirements.txt')
     run(venv() +  'cd /home/querosermb/querosermb/ && python manage.py migrate')
+    run(venv() +  'cd /home/querosermb/querosermb/ && python manage.py collectstatic')
 
 def populate():
     run(venv() +  'cd /home/querosermb/querosermb/ && python populate.py')
@@ -95,3 +96,7 @@ def restart_all():
     sudo('systemctl restart gunicorn')
     sudo('nginx -t')
     sudo('systemctl restart nginx')
+
+def cron():
+    execute('python /home/querosermb/cron.py')
+    

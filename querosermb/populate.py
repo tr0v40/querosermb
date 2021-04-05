@@ -8,7 +8,8 @@ from decouple import config
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", config('DJANGO_SETTINGS_MODULE', default='querosermb.settings', cast=str))
 django.setup()
 from mms_api.models import CriptoValores
-from mms_api.functions import converter_to_timestamp,calc_mms
+from mms_api.functions import converter_to_timestamp,calc_mms, converter_to_date
+
 
 def populate():
         
@@ -33,6 +34,7 @@ def populate():
             values = data.json()
             try:
                 for value in values['candles']:
+                    print(converter_to_date(value['timestamp']), value['close'])
                     CriptoValores.objects.create(
                         pair=code,
                         mms_timestamp=value['timestamp'],
@@ -48,15 +50,9 @@ def populate():
 
 def mms():
     for val in CriptoValores.objects.all():
-        mms_20 = calc_mms(val.pair, val.mms_timestamp, 20)
-        if mms_20:
-            val.mms20 = mms_20
-        mms_50 = calc_mms(val.pair, val.mms_timestamp, 50)
-        if mms_50:
-            val.mms_50 = mms_50
-        mms_200 = calc_mms(val.pair, val.mms_timestamp, 200)
-        if mms_200:
-            val.mms_200 = mms_200
+        val.mms_20 = calc_mms(val.pair, val.mms_timestamp, 20)
+        val.mms_50 = calc_mms(val.pair, val.mms_timestamp, 50)
+        val.mms_200 = calc_mms(val.pair, val.mms_timestamp, 200)
         val.save()
         
 
