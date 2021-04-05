@@ -80,7 +80,7 @@ class TestMmsCalculated(TestCase):
         self.assertEqual(calc_mms(1,1615950000,3), 36)
 
     def test_mms3_except(self):
-        self.assertEqual(calc_mms(1,1615863600, 36), None)
+        self.assertEqual(calc_mms(1,1615863600, 36), 0)
     
     def test_mms3_true(self):
         self.assertEqual(Decimal(calc_mms(1,1616986800, 3)), Decimal('6.66667'))

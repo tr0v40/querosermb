@@ -14,7 +14,8 @@ def full_instalattion():
     psql_conf()
     pg_create_user()
     pg_create_database()
-    permissions()
+    # permissions()
+    create_folder()
     virtualenv_install()
     populate()
     gunicorn_config()
@@ -45,8 +46,9 @@ def git_clone():
 def git_pull():
     sudo('cd /home/ && git pull')
 
-def teste():
-    sudo('psql ')
+def create_folder():
+    sudo('mkdir /home/querosermb/querosermb/static/')
+
 def _run_as_pg(command):
     return run('sudo -u postgres %s' % command)
 
