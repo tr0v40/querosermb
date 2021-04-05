@@ -1,9 +1,13 @@
+
 # Quero Ser Mb
-## Teste para Backend - Variações de Médias Moveis Simples
 [![Build Status](https://travis-ci.org/tr0v40/querosermb.svg?branch=main)](https://travis-ci.org/tr0v40/querosermb)
+## Teste para Backend - Variações de Médias Moveis Simples
+
+
 
 ## Sobre 
 Este serviço entrega variações de médias móveis simples das moedas Bitcoin e Etherium com valores provinientes da Candles do MB.
+
 
 ## Pre Requisitos
 [Local]
@@ -13,6 +17,7 @@ Prostgresql 10+
 
 [Server]
 Ubuntu 20.04
+
 
 ## Instalação
 [Local]
@@ -25,6 +30,7 @@ Rodar ```python manage.py migrate``` e para popular ```python populate.py```.
 Com seu local pronto, instale o Fabric ´´´pip install Fabric3==1.14.post1´´´.
 No arquivo fabfile.py, troque a variável ```env.hosts``` para o domínio do seu server.
 No terminal com a sua virtualenv ativa rode o comando ```fab full_instalattion```. Aguarde que esse processo é demorado, porém após sua conclusão seu ubuntu estará atualizado com todas suas dependencias e o sistema ativo para uso sem precisar executar mais nenhum comando.
+
 
 ## Métodos
 Requisições para a API devem seguir os padrões
