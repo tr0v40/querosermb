@@ -68,3 +68,5 @@ As incrementações diárias são feitas através de uma crontab que executa um 
 
 ## Testes
 Os testes são monitorados pelo Travis, foram feitos com django-test
+
+
